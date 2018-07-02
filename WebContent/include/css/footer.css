@@ -12,3 +12,6 @@ footer>div{
 	height:70px;
 	display: inline-block;
 }
+footer>div>p{
+	font-size : 0.8em;
+}

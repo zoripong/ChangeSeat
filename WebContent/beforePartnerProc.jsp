@@ -9,7 +9,14 @@
 <section id="sc_partner_list">
 <%
 	String name = request.getParameter("name");
-	String filePath= application.getRealPath("./include/data/"+name+".txt");
+	String filePath;
+	if(name.substring(name.length()-4, name.length()).equals(".txt")){
+		filePath= application.getRealPath("./include/data/"+name);
+		System.out.println(name.substring(name.length()-4, name.length()));
+	}else{
+		filePath= application.getRealPath("./include/data/"+name+".txt");
+	}
+	
 	session.setAttribute("name", name);
 	BufferedReader br = null;
 	

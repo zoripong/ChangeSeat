@@ -17,7 +17,7 @@ input{
 	text-align : center;
 }
 
-#btn_submit{
+.btn_submit{
  	background-color: #ffaa1c; /* Green */
     border: none;
     color: white;
@@ -31,6 +31,6 @@ input{
     margin : 30px 0 0 0;
     transition-duration: 0.5s;
 }
-#btn_submit:hover{
+.btn_submit:hover{
 	border-radius : 50px;
 }
