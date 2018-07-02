@@ -6,9 +6,8 @@
 <section id="sc_list_content">
 <%
 	request.setCharacterEncoding("UTF-8");
-	String name = request.getParameter("name");
-	
-	
+	String name = (String)session.getAttribute("name");
+	System.out.println(name+"??");
 
 	String filePath= application.getRealPath("./include/data");
 	File dir = new File(filePath); 
@@ -19,7 +18,7 @@
 
 		File file = fileList[i]; 
 
-		if(file.isFile() && file.getName().contains(name) && (!file.getName().equals(name))){
+		if(file.isFile() && file.getName().contains(name) && !(file.getName().equals(name+".txt"))){
 			out.println("<a href='beforeDetail.jsp?fileName="+file.getName()+"'>"+file.getName()+"</a><br>");
 			havingFile = true;
 

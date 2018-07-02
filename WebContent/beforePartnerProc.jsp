@@ -5,6 +5,8 @@
 <%@page import="java.io.BufferedReader"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="include/css/beforePartner.css">
+<section id="sc_partner_list">
 <%
 	String name = request.getParameter("name");
 	String filePath= application.getRealPath("./include/data/"+name+".txt");
@@ -24,7 +26,7 @@
 				if(sub.length >= 3){
 					out.println("<h4>"+sub[1].substring(sub[0].length()+1)+" 자리 배치 결과</h4>");
 				}else{
-					out.println(sub[0]+"♡"+sub[1]+"<br>");
+					out.println("<span class='item'>"+sub[0]+"♡"+sub[1]+"</span><br>");
 				}
 			}
 		}
@@ -35,4 +37,5 @@
 	
 %>
 
-<a href="beforePartnerService.jsp"><button onclick="reset_before()">초기화</button></a>
+<a href="beforePartnerService.jsp"><button>초기화</button></a>
+</section>

@@ -115,8 +115,13 @@
 		}
 	
 		//자리 배치 결과
+		isDuplication =false;
 		out.println(changeSeat(list, mod, division, height, partner));
 
+		// 중복 되었었는지
+		if(isDuplication){
+			out.println("<script>alert('이전 내역과 중복이 되어 자리를 자동으로 재배치하였습니다.');</script>");
+		}
 		
 		
 		//정보 저장
@@ -133,7 +138,7 @@
 	<%!
 		ArrayList<String> partnerList = new ArrayList<String>();
 		ArrayList<String> beforePartner;	
-		
+		boolean isDuplication = false;
 		public String changeSeat(ArrayList<Integer> list, int mod,  int division, int height, boolean partner){
 		partnerList = new ArrayList<String>();
 		StringBuffer sb = new StringBuffer();
@@ -165,6 +170,7 @@
 					
 					if(beforePartner.contains(number+"\t"+secNumber)){
 						System.out.println("머박적 실제로 일어났드아~!!");
+						isDuplication = true;
 						System.out.println("====요기다====");
 						for(Integer item : list){
 							System.out.println(item);
@@ -200,6 +206,7 @@
 						sb.append(secNumber);
 						if(beforePartner.contains(number+"\t"+secNumber)){
 							System.out.println("머박적 실제로 일어났드아~!!");
+							isDuplication = true;
 							System.out.println("====요기다====");
 							for(Integer item : list){
 								System.out.println(item);
