@@ -1,0 +1,86 @@
+#sc_input_content{
+	width:100%;
+	text-align :center;
+}
+#form_input , #division{
+	width: 300px;
+	height: 30px;
+	border: 0.5px solid #cccccc;
+	text-align : center;
+	margin:10px 0;
+}
+
+#division>option{
+	text-align : center;
+}
+
+#partner_label{
+	display: inline-block;
+	width : 150px;
+	padding-left:50px;
+	text-align:left;
+	margin:10px 0;
+}
+#partner_check{
+	width : 100px;
+	height : 30px;
+	margin:10px 0;
+
+}
+
+#student_number{
+	width:200px;
+	height:30px;	
+	text-align: center;
+	margin:10px 0;
+}
+
+#check_hole{
+	width:100px;
+	height:35px;
+	margin:10px 0;
+	background-color: #ffffff; /* Green */
+    border: none;
+    color: #ffaa1c;
+    border : 1px solid #ffaa1c;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius : 0px;
+    transition-duration: 0.5s;
+}
+
+#check_hole:hover{
+	border-radius : 35px;
+}
+
+
+#hole_checkbox{
+	width : 15px;
+	height : 15px;
+	margin: 10px;
+}
+
+#checkbox_wrapper{
+	display:inline-block;
+	width:60px;
+	height : 30px;
+	margin:10px 0;
+}
+#btn_submit{
+	width: 300px;
+	height: 50px;
+	background-color: #ffaa1c; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius : 0px;
+    transition-duration: 0.5s;
+}
+#btn_submit:hover{
+	border-radius : 50px;
+}

@@ -8,7 +8,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String title = request.getParameter("title");
+	String title = (String)session.getAttribute("title");
+	
 	int division = Integer.parseInt(request.getParameter("division"));
 	boolean partner = false;
 	
@@ -51,6 +52,7 @@
 %>
 
 <section id="sc_seat">
+	
 	<%
 	
 	
@@ -60,13 +62,21 @@
 		}
 		
 		//결원 지우기
-		for(String sHole : checkHole){
-			int hole = Integer.parseInt(sHole);
-			list.remove((hole-1));
+		if(checkHole != null){
+			for(String sHole : checkHole){
+				int hole = Integer.parseInt(sHole);
+				list.remove((hole-1));
+			}
 		}
 		
 		Collections.shuffle(list);
-	
+		
+		session.setAttribute("changeSeat", list);
+		session.setAttribute("studnetNumber", studentNumber);
+		session.setAttribute("holeNumber", holeNumber);
+		session.setAttribute("division", division);
+		session.setAttribute("partner", partner);
+		
 		/*
 		for(Integer i : list){
 			out.println(i+"<br>");
@@ -77,7 +87,7 @@
 		int index = 0;
 		int tmpMod = mod;
 		for(int i = 0; i<division; i++){
-			out.println("<table border='1'>");
+			out.println("<table>");
 			for(int j=0; j<height; j++){
 				out.println("<tr>");
 				out.println("<td>");
@@ -121,5 +131,11 @@
 	
 	
 	%>	
-
+	<br>
+	<p id="sub_title"><%= title %></p>
+	
+	<a href="index.jsp"><button class="btn">홈으로</button></a>
+	<form action="changeService.jsp" method="post">
+		<input class="btn" type="submit" value="저장하기">
+	</form>
 </section>
