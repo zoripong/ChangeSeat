@@ -19,7 +19,7 @@
 
 		File file = fileList[i]; 
 
-		if(file.isFile() && file.getName().contains(name)){
+		if(file.isFile() && file.getName().contains(name) && (!file.getName().equals(name))){
 			out.println("<a href='beforeDetail.jsp?fileName="+file.getName()+"'>"+file.getName()+"</a><br>");
 			havingFile = true;
 

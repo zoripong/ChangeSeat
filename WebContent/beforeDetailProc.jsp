@@ -93,5 +93,7 @@
 
 	
 %>
+<br>
+<a href="index.jsp"><button id="btn">처음으로</button></a>
 
 </section>

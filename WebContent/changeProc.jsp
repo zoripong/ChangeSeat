@@ -1,3 +1,6 @@
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.FileReader"%>
+<%@page import="java.io.BufferedReader"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Collection"%>
 <%@page import="java.util.ArrayList"%>
@@ -53,6 +56,7 @@
 
 <section id="sc_seat">
 	
+	<p id="sub_title"><%= title %></p>
 	<%
 	
 	
@@ -61,78 +65,164 @@
 			list.add(i);
 		}
 		
+		System.out.println(list.size());
+		
+		
 		//결원 지우기
 		if(checkHole != null){
+			ArrayList<Integer> holeList = new ArrayList<Integer>();
+			
+			
 			for(String sHole : checkHole){
 				int hole = Integer.parseInt(sHole);
-				list.remove((hole-1));
+				holeList.add(hole);
 			}
+			
+		 	Collections.sort(holeList);
+		 	Collections.reverse(holeList);
+		 	
+
+		 	for(int hole : holeList){
+				System.out.println(hole-1);
+				list.remove((hole-1));
+		 	}
 		}
 		
-		Collections.shuffle(list);
+		//이전 짝지 내역 가져오기
+		String name = (String)session.getAttribute("name");
+		String filePath= application.getRealPath("./include/data/"+name+".txt");
+		beforePartner = new ArrayList<String>();
+		BufferedReader br = null;
 		
+		try{
+			
+			br = new BufferedReader(new FileReader(filePath));
+			
+			while(true){
+				String str = br.readLine();
+				if(str == null)
+					break;
+				else{
+					String[] sub = str.split("\t");
+					if(sub.length < 3){
+						beforePartner.add(str);					
+					}
+				}
+			}
+			br.close();	
+		}catch(IOException e){
+			System.out.println(e.toString());
+		}
+	
+		//자리 배치 결과
+		out.println(changeSeat(list, mod, division, height, partner));
+
+		
+		
+		//정보 저장
 		session.setAttribute("changeSeat", list);
 		session.setAttribute("studnetNumber", studentNumber);
 		session.setAttribute("holeNumber", holeNumber);
 		session.setAttribute("division", division);
 		session.setAttribute("partner", partner);
+		session.setAttribute("partnerList", partnerList);
+//		for(String li : partnerList){
+//			System.out.println(li);
+//		}
+	%>	
+	<%!
+		ArrayList<String> partnerList = new ArrayList<String>();
+		ArrayList<String> beforePartner;	
 		
-		/*
-		for(Integer i : list){
-			out.println(i+"<br>");
-		}
-		out.println("<br>");
-		*/
+		public String changeSeat(ArrayList<Integer> list, int mod,  int division, int height, boolean partner){
+		partnerList = new ArrayList<String>();
+		StringBuffer sb = new StringBuffer();
+		Collections.shuffle(list);
+		
+		
+		System.out.println("===함수시작====");
+		for(Integer item : list){
+			System.out.println(item);
+		}		
+		System.out.println("============");
 		
 		int index = 0;
 		int tmpMod = mod;
+		
 		for(int i = 0; i<division; i++){
-			out.println("<table>");
+			sb.append("<table>");
 			for(int j=0; j<height; j++){
-				out.println("<tr>");
-				out.println("<td>");
-				out.println(list.get(index++));
-				out.println("</td>");
+				sb.append("<tr>");
+				sb.append("<td>");
+				int number = list.get(index++);
+				sb.append(number);
+				sb.append("</td>");
 				if(partner){
-					out.println("<td>");
-					out.println(list.get(index++));
-					out.println("</td>");
+					sb.append("<td>");
+					int secNumber = list.get(index++);
+					sb.append(secNumber);
+					sb.append("</td>");
+					
+					if(beforePartner.contains(number+"\t"+secNumber)){
+						System.out.println("머박적 실제로 일어났드아~!!");
+						System.out.println("====요기다====");
+						for(Integer item : list){
+							System.out.println(item);
+						}		
+						System.out.println("============");
+						return changeSeat(list, mod, division, height, partner);
+					}else{
+						partnerList.add(number+"\t"+secNumber);
+					}
 				}
-				out.println("</tr>");
+				sb.append("</tr>");
 			}
 
 			if(mod > 0){
-					out.println("<tr>");
-				out.println("<td>");
+				int number = 0;
+				sb.append("<tr>");
+				sb.append("<td>");
 				if(tmpMod <= 0){
-					out.println("X");
+					sb.append("X");
 				}else{
 					tmpMod--;
-					out.println(list.get(index++));
+					number = list.get(index++);
+					sb.append(number);
 				}
-				out.println("</td>");
+				sb.append("</td>");
 				if(partner){
-					out.println("<td>");
+					sb.append("<td>");
 					if(tmpMod <= 0){
-						out.println("X");
+						sb.append("X");
 					}else{
 						tmpMod--;
-						out.println(list.get(index++));
+						int secNumber = list.get(index++);
+						sb.append(secNumber);
+						if(beforePartner.contains(number+"\t"+secNumber)){
+							System.out.println("머박적 실제로 일어났드아~!!");
+							System.out.println("====요기다====");
+							for(Integer item : list){
+								System.out.println(item);
+							}		
+							System.out.println("============");
+							
+							return changeSeat(list, mod, division, height, partner);
+						}else{
+							partnerList.add(number+"\t"+secNumber);
+						}
+
 					}
-					out.println("</td>");
+					sb.append("</td>");
 					
 				}
-				out.println("</tr>");
+				sb.append("</tr>");
 			}
-			out.println("</table>");
+			sb.append("</table>");
 		}
-	
-
-	
-	
-	%>	
+			return sb.toString();
+		}
+	%>
 	<br>
-	<p id="sub_title"><%= title %></p>
 	
 	<a href="index.jsp"><button class="btn">홈으로</button></a>
 	<form action="changeService.jsp" method="post">

@@ -6,6 +6,8 @@
 	
 	String grade = request.getParameter("grade");
 	String group = request.getParameter("group");
+	
+	
 %>
 <section id="sc_select_content">
 <p id="sub_title"><%= school + "<br>" + grade + "학년    "+ group + "반"%></p>
@@ -17,4 +19,9 @@
 	<input type="hidden" name="name" value="<%= (school +"_"+ grade +"_"+ group) %>">
 	<input class="submit_btn" type="submit" value="이전내역조회">
 </form>
+<form action="beforePartner.jsp" method="POST">
+	<input type="hidden" name="name" value="<%= (school +"_"+ grade +"_"+ group) %>">
+	<input class="submit_btn" type="submit" value="이전짝지조회">
+</form>
+
 </section>

@@ -48,12 +48,13 @@ window.onload=function(){
 </script>
 <%
 	String name = request.getParameter("name");
-
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddkkmmss");
 
     Calendar c1 = Calendar.getInstance();
 
 	String title = name+"_"+sdf.format(c1.getTime());
+	session.setAttribute("name", name);
 	session.setAttribute("title", title);
 	
 %>

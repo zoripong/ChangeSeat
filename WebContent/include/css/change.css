@@ -1,5 +1,6 @@
 table{
 	display : inline-block;
+	margin:0px 15px 50px 15px;
 }
 td{
 	border : 2px solid #ffaa1c;
@@ -16,7 +17,7 @@ td{
 
 #sub_title{
 	font-size : 1.2em;
-	margin : 50px 0px;
+	margin : 0px 0px 50px 0px;
 }
 
 .btn{
