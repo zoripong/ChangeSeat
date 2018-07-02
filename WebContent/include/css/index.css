@@ -1,0 +1,36 @@
+#sc_question{
+	width:100%;
+	text-align:center;
+	padding : 100px 0px;
+}
+
+.question{
+	margin: 10px;
+	font-weight: bolder;
+}
+input{
+	width: 300px;
+	height: 30px; 
+	margin-bottom : 10px;
+	border: 0.5px solid #cccccc;
+	border-radius : 30px;
+	text-align : center;
+}
+
+#btn_submit{
+ 	background-color: #ffaa1c; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius : 0px;
+    height : 50px;
+    margin : 30px 0 0 0;
+    transition-duration: 0.5s;
+}
+#btn_submit:hover{
+	border-radius : 50px;
+}

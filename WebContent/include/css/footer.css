@@ -1,0 +1,14 @@
+footer{
+	padding : 50px 0px;
+	width:100%;
+	text-align : center;
+}
+#footer_logo{
+	width:70px;
+	height:70px;
+	display: inline-block;
+}
+footer>div{
+	height:70px;
+	display: inline-block;
+}

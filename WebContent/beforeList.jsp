@@ -8,7 +8,7 @@
 </head>
 <body>
 	<jsp:forward page="template.jsp">
-		<jsp:param name="CONTENTPAGE" value="indexProc.jsp" />
+		<jsp:param name="CONTENTPAGE" value="beforeListProc.jsp" />
 	</jsp:forward>	
 </body>
 </html>

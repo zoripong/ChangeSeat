@@ -2,7 +2,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<% request.setCharacterEncoding("UTF-8"); %>
 <script>
 var isCheck = false;
 window.onload=function(){
@@ -40,15 +40,12 @@ window.onload=function(){
 }	
 </script>
 <%
-	request.setCharacterEncoding("UTF-8");
-	String school = request.getParameter("school");
-	String grade = request.getParameter("grade");
-	String group = request.getParameter("group");
+	String name = request.getParameter("name");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
     Calendar c1 = Calendar.getInstance();
 
-	String title = school+"_"+grade+"_"+group+"_"+sdf.format(c1.getTime());
+	String title = name+"_"+sdf.format(c1.getTime());
 	
 %>
 <form id="add_form" name="add_form" action="change.jsp" method="POST">

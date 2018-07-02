@@ -13,8 +13,10 @@
 <link rel="stylesheet" type="text/css" href="include/css/footer.css">
 </head>
 <body>
-	<jsp:include page="/include/html/header.jsp" flush="false" />
-	<jsp:include page="<%=contentPage%>" flush="false" />
-	<jsp:include page="/include/html/footer.jsp" flush="false" />
+	<section id="sc_content">
+		<jsp:include page="/include/html/header.jsp" flush="false" />
+		<jsp:include page="<%=contentPage%>" flush="false" />
+		<jsp:include page="/include/html/footer.jsp" flush="false" />
+	</section>
 </body>
 </html>
